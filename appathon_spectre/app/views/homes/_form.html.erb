@@ -1,0 +1,47 @@
+<%= form_for(@home) do |f| %>
+  <% if @home.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@home.errors.count, "error") %> prohibited this home from being saved:</h2>
+
+      <ul>
+      <% @home.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+
+      
+    </div>
+  <% end %>
+
+<%= f.number_field :size, :placeholder => "Size", class: 'form-control' %>
+<br>
+<%= f.number_field :number_of_bedrooms, :placeholder => "Number of Bedrooms", class: 'form-control' %>
+<br>
+<%= f.number_field :number_of_bathrooms, :placeholder => "Number of Bathrooms", class: 'form-control' %>
+<br>
+<%= f.text_field :parking_lot, :placeholder => "Parking Lot", class: 'form-control' %>
+<br>
+<%= f.number_field :lot_size, :placeholder => "Lot Size", class: 'form-control' %>
+<br>
+<%= f.text_field :property_type, :placeholder => "Property Type", class: 'form-control' %>
+<br>
+<%= f.number_field :year_built, :placeholder => "Year Built", class: 'form-control' %>
+<br>
+<%= f.text_field :kitchen, :placeholder => "Kitchen Type", class: 'form-control' %>
+<br>
+<%= f.text_field :bathroom, :placeholder => "Bathroom Type", class: 'form-control' %>
+<br>
+<%= f.text_field :traffic_connection, :placeholder => "Traffic Connection", class: 'form-control' %>
+<br>
+<%= f.text_field :street, :placeholder => "Street", class: 'form-control' %>
+<br>
+<%= f.text_field :city, :placeholder => "City", class: 'form-control' %>
+<br>
+<%= f.text_field :country, :placeholder => "Country", class: 'form-control' %>
+<br>
+<%= f.text_field :side_costs, :placeholder => "Side Costs", class: 'form-control' %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
