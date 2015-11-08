@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SimpleOAuth;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 
 namespace Spectre.Api.Controllers
@@ -40,6 +43,28 @@ namespace Spectre.Api.Controllers
         // POST api/values
         public void Post([FromBody]string value)
         {
+            try
+            {
+                var accessToken = "9921809f-be51-4710-ac49-dbef132deb2b";
+                var myUri = new Uri("https://api.gini.net/documents");
+                var myWebRequest = WebRequest.Create(myUri);
+                var myHttpWebRequest = (HttpWebRequest)myWebRequest;
+                myHttpWebRequest.Method = "POST";
+                myHttpWebRequest.PreAuthenticate = true;
+                myHttpWebRequest.Headers.Add("Authorization", "BEARER " + accessToken);
+                myHttpWebRequest.Accept = "application/vnd.gini.v1+json";
+
+                var myWebResponse = myWebRequest.GetResponse();
+                var responseStream = myWebResponse.GetResponseStream();
+                var myStreamReader = new StreamReader(responseStream, Encoding.Default);
+                var json = myStreamReader.ReadToEnd();
+
+                responseStream.Close();
+                myWebResponse.Close();
+            }
+            catch
+            {
+            }
         }
 
         // PUT api/values/5
