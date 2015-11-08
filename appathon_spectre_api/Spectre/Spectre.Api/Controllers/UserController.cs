@@ -25,9 +25,16 @@ namespace Spectre.Api.Controllers
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public JObject Get(string id)
         {
-            return "value";
+            var request = "https://ucg-apimanager.axwaycloud.net:8065/users/v1/current/" + id;
+            var client = new WebClient();
+            client.Headers.Add("keyId", "abdee8a1-21a7-472a-929e-1be692a54ea2");
+            var json = client.DownloadString(request);
+
+            var user = JObject.Parse(json);
+
+            return user;
         }
 
         // POST api/values

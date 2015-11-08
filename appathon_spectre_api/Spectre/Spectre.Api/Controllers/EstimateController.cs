@@ -21,9 +21,18 @@ namespace Spectre.Api.Controllers
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public object Get(string street, string postbox, string city, string country)
         {
-            return "value";
+            var address = (street ?? "") + " " + (postbox ?? "") + " " + (city ?? "") + " " + (country ?? "");
+            address = address.Replace(" ", "+");
+            var url = string.Format("http://maps.googleapis.com/maps/api/staticmap?center={0}&zoom=16&size=600x300&maptype=roadmap", address);
+
+            return new
+            {
+                worth = 300000d,
+                currency = "EUR",
+                mapImageUrl = url
+            };
         }
 
         // POST api/values
