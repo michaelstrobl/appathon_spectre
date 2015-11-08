@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Homerun / SPECTRE</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+
+
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,800' rel='stylesheet' type='text/css'>
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+
+
+<!-- JQUERY --> 
+  
+  <link href='http://fullcalendar.io/js/fullcalendar-2.4.0/fullcalendar.css' rel='stylesheet' />
+<link href='http://fullcalendar.io/js/fullcalendar-2.4.0/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='http://fullcalendar.io/js/fullcalendar-2.4.0/lib/moment.min.js'></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.4.0/lib/jquery.min.js'></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.4.0/fullcalendar.min.js'></script>
+
+
+<script>
+
+  $(document).ready(function() {
+    
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      eventClick: function(calEvent, jsEvent, view) {
+
+       $('#myModal').modal('show');
+
+        $('#myModalLabel').html('Inspection booked for ' + jsEvent.target.innerHTML);
+        
+        $('#inspectionDateTime').html(jsEvent.target.innerHTML);
+
+
+        // alert('Hello');
+        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        // alert('View: ' + view.name);
+
+        // change the border color just for fun
+        // $(this).css('border-color', 'red');
+
+      },
+      defaultDate: '2015-11-08',
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: '16:00-17:00',
+          start: '2015-11-11',
+          backgroundColor: 'green'
+
+        },
+        {
+          title: '8:00-9:00',
+          start: '2015-11-20',
+          backgroundColor: 'green'
+
+        },
+        {
+          title: '8:00-9:00',
+          start: '2015-11-09',
+          backgroundColor: 'green'
+
+        },
+        {
+          title: '14:00-15:00',
+          start: '2015-11-16',
+          backgroundColor: 'green'
+
+        },
+      
+           {
+          title: '14:00-15:00',
+          start: '2015-11-12',
+          backgroundColor: 'green'
+
+        },
+           {
+          title: '15:00-16:00',
+          start: '2015-11-12',
+          backgroundColor: 'green'
+
+        },
+        {
+          title: '17:00-18:00',
+          start: '2015-11-17',
+          backgroundColor: 'green'
+
+        },
+        {
+          title: '12:00-13:00',
+          start: '2015-11-30',
+          backgroundColor: 'green'
+        }
+      ]
+    });
+    
+  });
+
+</script>
+
+
+<!-- SCRIPT BREAK-->
+
+
+
+
+
+</head>
+
+
+
+<body id="top">
+
+  <!-- begin:navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-top">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><span>Home<strong>Run</strong></span></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbar-top">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.html">HOW IT WORKS</a></li>
+
+          <li><a href="#modal-signin" class="signin" data-toggle="modal" data-target="#modal-signin">BUY A HOME</a></li>
+          <li><a href="#" class="signup" data-toggle="modal" data-target="#modal-signup">SELL YOUR HOME</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+  <!-- end:navbar -->
+
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9 col-md-push-3">
+            <div class="row">
+              <div class="col-md-12 single-post">
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <!-- TITLE --> 
+                    <div class="row">
+                      <div class="col-lg-8">
+                      </div>
+                      </div>  
+
+                   
+                      <h1>Available inspection appointments</h1>
+                      <h3><small>Book an inspector online to get your verified offer</small></h3>
+                      <br>
+                        <!-- break --> 
+                        <div id="calendar"></div>
+
+
+                        
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<!-- Button trigger modal -->
+
+
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <h1>Your Inspection was booked for <span id="inspectionDateTime"></span></h1>
+        <img src="http://www.kfz-gutachten-radke.de/wp-content/uploads/2014/08/kfz-sachverstaendiger-koeln-gruende.jpg" class="img-rounded img-responsive center-block">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                       <!-- break -->
+
+                       
+                  
+
+
+         
+         <!-- begin:sidebar -->
+          <div class="col-md-3 col-md-pull-9 sidebar">
+         
+         
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <center><h2><small>Estimated</small><br>EUR 300.000</h2></center>
+              </div><hr>    
+              <center><p>Getting Started</p>
+              <p>Forms</p>
+              <p>Inspection</p>
+              <p>Contract</p>
+              <p>Notary</p>
+              <p>Closing</p>
+              
+              </center>
+
+              <p><a href="#" class="col-lg-12 btn btn-primary">BOOK INSPECTION</a></p>
+            </div>
+            <!-- break -->
+            
+           
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Your personal assistant</h3>
+              </div>    
+               <center><div>
+
+             <!-- Profile Picture --> 
+               <img src="https://randomuser.me/api/portraits/med/women/84.jpg" class="img-circle img-responsive center-block">
+             </div></center><br>
+              <center><p>Melissa Mayer</p>
+                 <p>+49 162 151111 8</p>
+         
+              <a href="#">melissa@Homerun.com/a>
+           
+             
+              <br>
+              <br>
+             
+              <p><a href="#" class="col-lg-12 btn btn-primary">CONTACT MELISSA</a></p>
+            </div>
+            <!-- break -->
+            
+        
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+
+<!-- begin:footer -->
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="widget">
+          <h3>Homerun </h3>
+          <ul class="list-unstyled">
+            <li><a href="#">How it works</a></li>
+            <li><a href="#">Sell your home</a></li>
+            <li><a href="#">Buy a home</a></li>
+            <li><a href="#">Sold with Homerun</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- break -->
+      <div class="col-md-3 col-md-offset-6 col-sm-6 col-xs-12">
+        <div class="widget">
+          <h2>Homerun</h2>
+          <address>
+            <strong>A Unicredit/HypoVereinsbank Company</strong><br>
+            Kardinal-Faulhaber Platz 2<br>
+            80333 Munich, Germany<br>
+
+          </address>
+        </div>
+      </div>
+      <!-- break -->
+    </div>
+    <!-- break -->
+
+    <!-- begin:copyright -->
+    <div class="row">
+      <div class="col-md-12 copyright">
+        <p>Copyright &copy; 2015 Homerun AG. All Rights Reserved.</p>
+        <p>Imprint - Privacy</strong></p>
+        <a href="#top" class="btn btn-primary scroltop"><i class="fa fa-angle-up"></i></a>
+        <ul class="list-inline social-links">
+          <li><a href="#" class="icon-twitter" rel="tooltip" title="" data-placement="bottom" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#" class="icon-facebook" rel="tooltip" title="" data-placement="bottom" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#" class="icon-gplus" rel="tooltip" title="" data-placement="bottom" data-original-title="Gplus"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- end:copyright -->
+
+  </div>
+</div>
+<!-- end:footer -->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="js/bootstrap.js"></script>
+
+    <script src="js/script.js"></script>
+  </body>
+  </html>
