@@ -66,15 +66,34 @@
                       
                         <h3 class="signup-member-title">Build your apartment profile</h3>
                         <div class="signup-member-title">
-                        <p>Let's start by answering some basic questions about your home.</p>
-                       
+                        <p>Let's start by answering some basic questions about your home.</p>                       
                         </div>
                         <hr>
 
-                     
+                        <img id="map" />
+                        <br/>            
                                           
                         <div class="signup-member-about">
+                        <br>
+                           <div class="form-group">
+                            <label for="name">Address</label>
+                               <br><div class="col-lg-4 col-lg-offset-4"><input id="address" type="text" class="form-control input" placeholder="#"></div>
+                          <br><br><hr>
+                          </div>
 
+
+                           <div class="form-group">
+                            <label for="name">City</label>
+                               <br><div class="col-lg-4 col-lg-offset-4"><input id="city" type="text" class="form-control input" placeholder="#"></div>
+                          <br><br><hr>
+                          </div>
+
+
+                           <div class="form-group">
+                            <label for="name">Country</label>
+                               <br><div class="col-lg-4 col-lg-offset-4"><input id="country" type="text" class="form-control input" placeholder="#"></div>
+                          <br><br><hr>
+                          </div>
 
                        
                           <div class="form-group">
@@ -111,15 +130,6 @@
                             <div class="col-lg-4 col-lg-offset-4"><input type="text" class="form-control input" placeholder="####"></div>
                         <br><br><hr>
                           </div>
-
-
-                     
-                    
-
-                    
-
-                       
-
                         
 
                         <div class="row">
@@ -164,12 +174,12 @@
                        
                           <div class="form-group">
                             <label for="name">Name</label>
-                               <br><div class="col-lg-4 col-lg-offset-4"><input type="text" class="form-control input" placeholder="First Name"></div>
+                               <br><div class="col-lg-4 col-lg-offset-4"><input id="firstName" type="text" class="form-control input" placeholder="First Name"></div>
 <br>
                    
                                 <div class="form-group">
                
-                            <br><div class="col-lg-4 col-lg-offset-4"><input type="text" class="form-control input" placeholder="Last Name"></div>
+                            <br><div class="col-lg-4 col-lg-offset-4"><input id="lastName" type="text" class="form-control input" placeholder="Last Name"></div>
                         
                         <br><br>
                                <center><p><i class="fa fa-lock"></i> Your data is kept strictly confidential & protected.</p></center>
@@ -357,7 +367,20 @@
              url: "http://spectreapi.cloudapp.net/api/user?id=" + id
          })
          .done(function (data) {
-            alert(data.userInfo.firstName);
+            $("#address").val(data.userInfo.address.street+" "+data.userInfo.address.streetNumber)
+              .css({'background-color':'#55ccaa'});
+            $("#city").val(data.userInfo.address.city).css({'background-color':'#55ccaa'});
+            $("#country").val(data.userInfo.address.country).css({'background-color':'#55ccaa'});
+            $("#firstName").val(data.userInfo.firstName).css({'background-color':'#55ccaa'});
+            $("#lastName").val(data.userInfo.lastName).css({'background-color':'#55ccaa'});
+
+            $.ajax({ 
+              url: "http://spectreapi.cloudapp.net/api/estimate?street=" + $("#address").val() + "&postbox=" +
+                $("#city").val() + "&country=" + $("#country").val()
+            })
+             .done(function (estimateData) {
+                $("#map").attr("src", estimateData.mapImageUrl);
+           });
        });
 
         $("#nextToAboutYouButton").click(function() {
@@ -372,7 +395,7 @@
         });
 
         $('#nextButton').click(function() {
-          window.location.href = 'form-yes.html';
+          window.location.href = 'form-yes.html#' + $("#firstName").val();
         });
 
       });

@@ -16,7 +16,8 @@
   <script type="text/javascript">
   $(document).ready(function() {
     setTimeout(function(){
-        window.location.href = 'offer.html';
+        var name = document.URL.substr(document.URL.indexOf('#') + 1);
+        window.location.href = 'offer.html#' + name;
      }, 2000);
   });
   </script>

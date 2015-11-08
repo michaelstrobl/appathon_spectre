@@ -53,7 +53,7 @@
               <center>
                 <img src="https://randomuser.me/api/portraits/med/women/84.jpg" class="img img-responsive img-circle">
                 <br>
-                <h2 class="signup-member-title">Thank you for waiting, NAME.</h2>
+                <h2 class="signup-member-title">Thank you for waiting, <span id="name"></span>.</h2>
                 <h4>Your offer is ready.</h4>
                 
                 <br>
@@ -163,6 +163,8 @@
     <script src="js/jquery.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+        var name = document.URL.substr(document.URL.indexOf('#') + 1);
+        $("#name").html(name);
         $('#nextButton').click(function() { 
           window.location.href = 'dashboard-termin.html';
         });
